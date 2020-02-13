@@ -8,13 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Version;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/*Table Annotation removed*/
 @Entity
 @Getter
 @Setter
@@ -24,7 +25,6 @@ import lombok.Setter;
 		               @NamedQuery(name = "Product.byProductId", query = "Select p from Product p"),
 		               @NamedQuery(name = "Product.byDescription", query = "Select p from Product p")
 		               })
-@Table
 public class Product
 {
     @Id
