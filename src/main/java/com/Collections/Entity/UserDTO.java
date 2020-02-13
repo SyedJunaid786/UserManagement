@@ -1,8 +1,7 @@
-package com.layers.Model;
+package com.Collections.Entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,17 +10,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Userr implements Serializable
+public class UserDTO implements Serializable
 {
-	@Id
-    private Long id;
+	private static final long serialVersionUID = 1L;
+	
     private String username;
 	private String password;
 	private String email;
 	private String number;
 	private String address;
-	
-	public Userr(Long id, String username, String password, String email, String number, String address)
+	    
+	public UserDTO(String username, String password, String email, String number, String address)
 	{
 		this.username = username;
 		this.password = password;

@@ -1,0 +1,15 @@
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/demo?useSSL=false
+#    username: root
+#    password: 
+#    driverClassName: com.mysql.jdbc.Driver
+#    
+#    
+#server:
+# port: 8081
+# 
+# debug: true

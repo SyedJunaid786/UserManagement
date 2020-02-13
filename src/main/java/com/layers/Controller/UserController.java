@@ -4,7 +4,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +16,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.layers.Model.User;
 import com.layers.Service.UserService;
 
 @RestController
+@RequestMapping("/users")
 public class UserController 
 {
 	@Autowired
 	private UserService userservice;
 
-	@GetMapping("/users")
+	@GetMapping("")
 	@ResponseBody
 	public ResponseEntity<List<User>> getUsers() 
 	{
@@ -34,7 +39,7 @@ public class UserController
 	 return ResponseEntity.ok(users);  // return 200, with json body
 	}
 
-	@GetMapping("/users/{id}")
+	@GetMapping("/{id}")
 	@ResponseBody
 	public ResponseEntity<User> getUser(@PathVariable("id") Long id) 
 	{
@@ -50,7 +55,7 @@ public class UserController
 
 	}
 	
-	@PostMapping("/user")
+	@PostMapping("")
 	public ResponseEntity<Void> saveUser(@Valid @RequestBody User user) throws URISyntaxException
 	{
 	 try
@@ -74,7 +79,7 @@ public class UserController
 	 * return user; }
 	 */
 	
-	@PutMapping("/users/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<User> saveOrUpdateUser(@RequestBody User user, @PathVariable long id)
 	{
 
@@ -91,7 +96,7 @@ public class UserController
 	}
 
 	
-	  @DeleteMapping("/users/{id}") 
+	  @DeleteMapping("/{id}") 
 	  public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) 
 	  {  
 		  try 
