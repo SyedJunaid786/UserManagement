@@ -64,7 +64,7 @@ public class ProductController
     	                          return counter;   	  
                                };
 
-        System.out.println(obj.isZero(productList));
+//        System.out.println(obj.isZero(productList));
         
         if(obj.isZero(productList) == 0)
         {
