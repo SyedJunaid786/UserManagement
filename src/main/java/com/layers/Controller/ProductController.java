@@ -64,9 +64,7 @@ public class ProductController
                                   }
     	                          return counter;   	  
                                };
-
-//        System.out.println(obj.isZero(productList));
-        
+        System.out.println(obj.isZero(productList));
         if(obj.isZero(productList) == 0)
         {
         	return new ResponseEntity("Version Not Found", HttpStatus.NOT_FOUND);
