@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.layers.Model.Product;
 import com.layers.Repository.ProductRepository;
 
+
 @Service
 public class ProductService
 {
@@ -26,6 +27,25 @@ public class ProductService
 	{
 		return productrepo.findByVersion(Version);
 	}
+	
+	
+//	public List<Product> listAllProductsByVersion(Integer Version)
+//	{
+//		findByVersion List<Product>=(Version) -> {
+//			     return product repo.findByVersion(Version);
+//		      };
+//		
+//	}
+	
+	
+//	public List<Product> listAllProductsByVersion(Integer Version)
+//	{
+//		(Version) -> { return productrepo.findByVersion(Version) };
+//	}
+	
+	
+	
+	
 	public List<Product> listAllProductsByProductId(String ProductId)
 	{
 		return productrepo.findByProductId(ProductId);
@@ -40,7 +60,7 @@ public class ProductService
 	{
 		return productrepo.findByDescription(category);
 	}
-		 
+		
 	public List<Product> listAllProducts()
 	{
 		return productrepo.findAll();

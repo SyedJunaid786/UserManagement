@@ -12,7 +12,9 @@ import com.layers.Model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer>
 {
+	
 	 List<Product> findByVersion(Integer Version);
+	
 	 List<Product> findByProductId(String ProductId);
 
 	 List<Product> findByDescription(String Description); 

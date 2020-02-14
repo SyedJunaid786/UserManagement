@@ -1,6 +1,7 @@
 package com.layers.Controller;
 
 import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+@FunctionalInterface
+interface test
+{
+   int isZero(Iterable<Product> productList);
+}
+
 @RestController
 @RequestMapping("/product")
 @Api(value="onlinestore", description="Operations pertaining to products in Online Store")
@@ -42,6 +50,45 @@ public class ProductController
     }
     )
     
+    @RequestMapping(value = "/Version/{category}", method= RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Iterable<Product>> VersionList(@PathVariable("category") Integer Version,Model model)
+    {   
+        Iterable<Product> productList = productService.listAllProductsByVersion(Version);
+        
+        test obj=(productlist) ->{
+        	                    int counter = 0;
+                                for (Object j : productList) 
+                                 {
+                                    counter++;
+                                  }
+    	                          return counter;   	  
+                               };
+
+        System.out.println(obj.isZero(productList));
+        
+        if(obj.isZero(productList) == 0)
+        {
+        	return new ResponseEntity("Version Not Found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);   
+	
+    }
+    
+    
+//    @RequestMapping(value = "/Version/{category}", method= RequestMethod.GET, produces = "application/json")
+//    public ResponseEntity<Iterable<Product>> VersionList(@PathVariable("category") Integer Version,Model model)
+//    {   
+//        Iterable<Product> productList = productService.listAllProductsByVersion(Version);
+//        
+//        if(productService.isZero(productList) == 0)
+//        {
+//        	return new ResponseEntity("Version Not Found", HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(productList, HttpStatus.OK);   
+//	
+//    }
+    
+    
     @RequestMapping(value = "/Image/{category}", method= RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Iterable<Product>> ImageList(@PathVariable("category") String category,Model model)
     {    
@@ -54,20 +101,7 @@ public class ProductController
         return new ResponseEntity<>(productList, HttpStatus.OK);   
 	
     }
-    
-    @RequestMapping(value = "/Version/{category}", method= RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Iterable<Product>> VersionList(@PathVariable("category") Integer Version,Model model)
-    {   
-        Iterable<Product> productList = productService.listAllProductsByVersion(Version);
-        
-        if(productService.isZero(productList) == 0)
-        {
-        	return new ResponseEntity("Version Not Found", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(productList, HttpStatus.OK);   
-	
-    }
-    
+
     @RequestMapping(value = "/ProductId/{category}", method= RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Iterable<Product>> ProductIdList(@PathVariable("category") String category,Model model)
     {
@@ -114,10 +148,24 @@ public class ProductController
     @RequestMapping(value = "/list", method= RequestMethod.GET, produces = "application/json")
     public Iterable<Product> list(Model model)
     {
-        Iterable<Product> productList = productService.listAllProducts();
-        
+    	Iterable<Product>  productList = productService.listAllProducts();  
         return productList;
     }
+    
+    
+//    @RequestMapping(value = "/list", method= RequestMethod.GET, produces = "application/json")
+//    public Iterable<Product> list(Model model)
+//    {
+//        
+//    	Iterator<Product> productList =(Version) -> 
+//                                              {
+//        	                                    productService.listAllProducts();
+//        	                                    return productList;
+//                                       };
+//    }
+    
+    
+    
     
     
     @ApiOperation(value = "Search a product with an ID",response = Product.class)
