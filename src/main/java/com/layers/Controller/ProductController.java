@@ -51,6 +51,32 @@ public class ProductController
     }
     )
     
+    
+    @RequestMapping(value = "/ProductId/{category}", method= RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Iterable<Product>> ProductIdList(@PathVariable("category") String category,Model model)
+    {
+        Iterable<Product> productList = productService.listAllProductsByProductId(category);
+        
+        test obj=(productlist) ->{
+            int counter = 0;
+            for (Object j : productList) 
+             {
+                counter++;
+              }
+              return counter;   	  
+           };
+           
+System.out.println(obj.isZero(productList));
+
+        if(obj.isZero(productList) == 0)
+        {
+        	return new ResponseEntity("ProductId Not Found", HttpStatus.NOT_FOUND);
+        }
+        
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+
+    }
+    
     @RequestMapping(value = "/Version/{category}", method= RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Iterable<Product>> VersionList(@PathVariable("category") Integer Version,Model model)
     {   
@@ -101,19 +127,19 @@ public class ProductController
 	
     }
 
-    @RequestMapping(value = "/ProductId/{category}", method= RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Iterable<Product>> ProductIdList(@PathVariable("category") String category,Model model)
-    {
-        Iterable<Product> productList = productService.listAllProductsByProductId(category);
-        
-        if(productService.isZero(productList) == 0)
-        {
-        	return new ResponseEntity("ProductId Not Found", HttpStatus.NOT_FOUND);
-        }
-        
-        return new ResponseEntity<>(productList, HttpStatus.OK);
-
-    }
+//    @RequestMapping(value = "/ProductId/{category}", method= RequestMethod.GET, produces = "application/json")
+//    public ResponseEntity<Iterable<Product>> ProductIdList(@PathVariable("category") String category,Model model)
+//    {
+//        Iterable<Product> productList = productService.listAllProductsByProductId(category);
+//        
+//        if(productService.isZero(productList) == 0)
+//        {
+//        	return new ResponseEntity("ProductId Not Found", HttpStatus.NOT_FOUND);
+//        }
+//        
+//        return new ResponseEntity<>(productList, HttpStatus.OK);
+//
+//    }
     
     @RequestMapping(value = "/Price/{category}", method= RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Iterable<Product>> PriceList(@PathVariable("category") BigDecimal category,Model model)
