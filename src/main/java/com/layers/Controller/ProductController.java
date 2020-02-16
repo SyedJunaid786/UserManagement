@@ -190,9 +190,6 @@ System.out.println(obj.isZero(productList));
 //    }
     
     
-    
-    
-    
     @ApiOperation(value = "Search a product with an ID",response = Product.class)
     @RequestMapping(value = "/show/{id}", method= RequestMethod.GET, produces = "application/json")
     @ResponseBody
